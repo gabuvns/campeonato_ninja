@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "lista.h"
 #include "ninja.h"
+#include "arvore.h"
 
 int main(){
     l_lista* lista = aloca_lista();
@@ -16,6 +17,10 @@ int main(){
     printf("tamanho lista = %d\n", lista->quantidade);
     printa_lista(lista);
     limpa_lista(lista);
+
+    arvore_raiz* raiz = tree_create();
+    free_tree(raiz);
+
 
     return 0;
 }
