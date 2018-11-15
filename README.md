@@ -1,9 +1,9 @@
-#Campeonato Ninja
+# Campeonato Ninja
 
-##Este jogo faz o uso de árvores binárias para simular um campeaonato ninja.
+## Este jogo faz o uso de árvores binárias para simular um campeaonato ninja.
 Escolha seu ninja nesse campeonato mortal onde 16 ninjas entram, apenas 1 sai.
 
-##Como compilar:
+## Como compilar:
 -gcc -c lista.c
 -gcc -c ninja.c
 -gcc -c arvore.c
