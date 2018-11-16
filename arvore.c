@@ -3,7 +3,7 @@
 #include "ninja.h"
 #include "lista.h"
 #include "arvore.h"
-
+#include <time.h>
 
 //Funcoes relativas a criacao da arvore
 //Cria no
@@ -28,7 +28,6 @@ arvore_raiz* cria_raiz(){
 t_node* cria_arvores (int altura){
     if(altura < 5){
         t_node*  node = node_create();
-        //printf("%d\n", altura);
         altura++;
 
         if(node->left == NULL && altura < 5){
@@ -89,3 +88,67 @@ void free_tree(arvore_raiz* raiz){
 }
 
 //Fim das funcoes relativas a destruicao da arvore
+
+
+l_lista* pega_ninja(){
+    //abre arquivo
+    FILE* fd;
+    fd = fopen("ninjas.txt", "r");
+    
+    if(fd == NULL){
+        printf("Erro ao abrir aqruivo, arquivo inexistente! Programa encerrado!\n");
+        return;
+    }
+
+    //vetor aleatorio
+    int vetor[16];
+    int valor_aleatorio;
+
+    struct timespec seed;																	
+    clock_gettime(CLOCK_REALTIME, &seed);												
+    srand(seed.tv_nsec); 
+    
+    int i = 0, j, flag;
+
+    while(i<16){
+        flag  = 1; 
+        valor_aleatorio = rand() % 32;
+
+        for(j=0;j<16;j++){
+            if(vetor[j] == valor_aleatorio){
+                flag = 0;
+            }
+        }
+        
+        if(flag == 1){
+            vetor[i] = valor_aleatorio;
+            i++;    
+        }
+    } 
+
+    //coloca o ninja na lista
+    Ninja* ninja;
+    char nome[16];
+    char elemento[11];
+    int ninjutsu;
+    int taijutsu;
+    int genjutsu;
+    int defesa;
+
+    l_lista* lista = aloca_lista();
+    for(i=0;i<16;i++){
+        printf("posicao no vetor = %d\n", vetor[i]);
+    }
+    for(i=0;i<16;i++){
+        for(j=0;j<vetor[i];j++){
+            fscanf(fd, "%[^,], %[^,],  %d, %d, %d, %d\n", nome, elemento, &ninjutsu, &genjutsu, &taijutsu, &defesa);
+        }
+
+        ninja = ninja_create(nome, elemento, ninjutsu, genjutsu, taijutsu, defesa);   
+        insere_lista(lista, ninja);        
+        rewind(fd); 
+    }
+
+    fclose(fd);
+    return lista;
+}

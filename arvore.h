@@ -18,5 +18,6 @@ typedef struct{
 
 void free_tree(arvore_raiz* raiz);
 arvore_raiz* tree_create();
+l_lista* pega_ninja();
 
 #endif

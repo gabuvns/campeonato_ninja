@@ -18,3 +18,22 @@ Ninja* ninja_create(char* _nome, char* _elemento, int _ninjutsu, int _genjutsu, 
     ptr->defesa = _defesa; 
     return ptr;
 }
+
+Ninja* ninja_create_vazio(){
+
+    Ninja* ptr = malloc(sizeof(Ninja));
+    
+    ptr->nome = malloc(sizeof(char) * 15);
+    
+    ptr->elemento = malloc(sizeof(char) * 10);
+    
+
+    return ptr;
+}
+
+void ninja_free(Ninja* ninja){
+        free(ninja->nome);
+        free(ninja->elemento);
+        free(ninja);
+
+}
