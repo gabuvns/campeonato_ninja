@@ -3,18 +3,17 @@
 #include "lista.h"
 #include "ninja.h"
 #include "arvore.h"
+#include "fila.h"
 
 int main(){
    
-  
-    l_lista* lista = pega_ninja();
-
-  
+    arvore_raiz* raiz = tree_create();
+    l_lista* fila = cria_fila(raiz, 4);
     
     
-    printa_lista(lista);
-    limpa_lista(lista);
-
+    printf("Numero de itens = %d\n", fila->quantidade);
+    limpa_fila(fila);
+    free_tree(raiz);
 
     return 0;
 }

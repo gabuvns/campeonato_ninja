@@ -10,6 +10,8 @@ Escolha seu ninja nesse campeonato mortal onde 16 ninjas entram, apenas 1 sai.
 
 - gcc -c arvore.c
 
+- gcc -c fila.c
+
 - gcc -o main main.c lista.o ninja.o arvore.o
 
 Digite ./main no terminal para executar.

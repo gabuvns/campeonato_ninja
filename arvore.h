@@ -8,7 +8,7 @@ typedef struct node{
     Ninja* ninja;
     struct node* left;
     struct node* right;
-    int altura;
+
 }t_node;
 
 typedef struct{
@@ -19,5 +19,7 @@ typedef struct{
 void free_tree(arvore_raiz* raiz);
 arvore_raiz* tree_create();
 l_lista* pega_ninja();
+/*void preenche_arvore(l_lista* lista,arvore_raiz* raiz);
+void visita_nivel(t_node* raiz, int altura);*/
 
 #endif

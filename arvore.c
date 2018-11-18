@@ -9,11 +9,9 @@
 //Cria no
 t_node* node_create(){
     t_node* ptr = malloc(sizeof(t_node));
-    int altura=0;
     ptr->left = NULL;
     ptr->right = NULL;
     ptr->ninja = NULL;
-    ptr->altura = altura;
     return ptr;
 }
 
@@ -58,11 +56,9 @@ void node_free(t_node* node){
     if(node != NULL){
         node_free(node->left);
         node_free(node->right);
+        //ATENCAO, LIBERAR AQUI OU NA ARVORE******
         if(node->ninja != NULL){
             ninja_free(node->ninja);
-        }
-        else{
-            free(node->ninja);
         }
         free(node);
     }   
@@ -89,7 +85,7 @@ void free_tree(arvore_raiz* raiz){
 
 //Fim das funcoes relativas a destruicao da arvore
 
-
+//cria uma lista com os 16 ninjas aleatoriamente
 l_lista* pega_ninja(){
     //abre arquivo
     FILE* fd;
@@ -152,3 +148,12 @@ l_lista* pega_ninja(){
     fclose(fd);
     return lista;
 }
+
+/*Passar os 16 ninjas para a árvore
+void preenche_arvore(l_lista* lista, arvore_raiz* raiz){
+    
+}
+
+void visita_nivel(t_node* raiz, int altura){
+    while()
+}*/
