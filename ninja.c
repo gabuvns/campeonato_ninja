@@ -75,7 +75,7 @@ void print_atributos_elementais(int vantagem, l_elemento* meu_personagem, int ha
         }
         
         if(hab_indisp != 4){
-            printf("\e[94m(4)Defesa = %d\n", meu_personagem->ninja->defesa);
+            printf("\e[94m(4)Defesa   = %d\n", meu_personagem->ninja->defesa);
             printf("\e[39m");
         }
         else{
@@ -351,7 +351,7 @@ l_elemento* ninja_fight(l_elemento* ninja1, l_elemento* ninja2, l_elemento* meu_
 
     if(ehjogador == 1){
         vantagem = elementos( ninja2, meu_personagem);
-       printf("\e[39mSeu personagem:\e[33m %s\e[39m\n\n\n", meu_personagem->ninja->nome);
+        printf("\e[39mSeu personagem:\e[33m %s\e[39m\n\n\n", meu_personagem->ninja->nome);
         print_atributos_elementais(vantagem, meu_personagem, hab_indisp);
         printf("\n\nSeu adversario =  \e[41m\e[93m%s\n\e[39m\e[49m", ninja2->ninja->nome);
         printf("\nEscolha um atributo = ");
