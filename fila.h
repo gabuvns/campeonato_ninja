@@ -10,5 +10,5 @@
 l_lista* cria_fila(arvore_raiz* raiz, int altura_desejada);
 void insere_fila(l_lista* fila, t_node* node);
 void limpa_fila(l_lista* fila);
-
+void preenche_fila(l_lista* fila, l_lista* lista);
 #endif

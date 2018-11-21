@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "ninja.h"
 #include "lista.h"
 #include "arvore.h"
-#include <time.h>
 
 //Funcoes relativas a criacao da arvore
 //Cria no
@@ -56,10 +56,12 @@ void node_free(t_node* node){
     if(node != NULL){
         node_free(node->left);
         node_free(node->right);
+
         //ATENCAO, LIBERAR AQUI OU NA ARVORE******
         if(node->ninja != NULL){
             ninja_free(node->ninja);
         }
+
         free(node);
     }   
 }   
@@ -132,9 +134,7 @@ l_lista* pega_ninja(){
     int defesa;
 
     l_lista* lista = aloca_lista();
-    for(i=0;i<16;i++){
-        printf("posicao no vetor = %d\n", vetor[i]);
-    }
+
     for(i=0;i<16;i++){
         for(j=0;j<vetor[i];j++){
             fscanf(fd, "%[^,], %[^,],  %d, %d, %d, %d\n", nome, elemento, &ninjutsu, &genjutsu, &taijutsu, &defesa);
@@ -149,11 +149,3 @@ l_lista* pega_ninja(){
     return lista;
 }
 
-/*Passar os 16 ninjas para a árvore
-void preenche_arvore(l_lista* lista, arvore_raiz* raiz){
-    
-}
-
-void visita_nivel(t_node* raiz, int altura){
-    while()
-}*/

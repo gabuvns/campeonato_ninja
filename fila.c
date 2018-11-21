@@ -36,7 +36,7 @@ void insere_fila(l_lista* fila, t_node* node){
 }
 
 
-//Criamos uma fila onde cada elemento aponta para um no na arvore, a fila ja eh criada
+//Criamos uma fila onde cada elemento aponta para um no da arvore
 //coloca todos os elementos de um determinado nivel em fila
 void cria_fila_nivel(l_lista* fila, t_node* node, int altura_desejada, int altura_atual){
     if(altura_atual < altura_desejada){
@@ -50,6 +50,8 @@ void cria_fila_nivel(l_lista* fila, t_node* node, int altura_desejada, int altur
     }
 }
 
+
+//Percursao em largura
 //Consideramos o no raiz como nivel 0 e seus dois filhos como nivel 1 e assim por diante
 l_lista* cria_fila(arvore_raiz* raiz, int altura_desejada){
     int altura_atual = 0;
@@ -75,12 +77,6 @@ void limpa_fila(l_lista* fila){
             morra = auxiliar;
             auxiliar = auxiliar->proximo;
             
-            if(morra->ninja != NULL){
-                free(morra->ninja->nome);
-                free(morra->ninja->elemento);
-                free(morra->ninja);        
-            }
-            
             free(morra);
         }
 
@@ -88,4 +84,17 @@ void limpa_fila(l_lista* fila){
 
     free(fila);
     printf("Fila esvaziada!\n");
+}
+
+/*Preenche a fila na qual os elementos apontam para a árvore com ninjas da lista aleatoria*/
+void preenche_fila(l_lista* fila, l_lista* lista){
+    l_elemento* auxiliar_fila = fila->inicio;
+    l_elemento* auxiliar_lista = lista->inicio;
+
+    while(auxiliar_lista!= NULL){
+        auxiliar_fila->ninja = auxiliar_lista->ninja;
+        auxiliar_lista = auxiliar_lista->proximo;
+        auxiliar_fila = auxiliar_fila->proximo;
+    }
+
 }

@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "lista.h"
 #include "ninja.h"
 
+#define CLEAR system("clear")
 l_elemento* aloca_elemento(){
   l_elemento* ptr = malloc(sizeof(l_elemento));
   ptr->anterior = NULL;
@@ -59,11 +61,74 @@ void printa_lista(l_lista* lista){
   else{
 
       l_elemento* aux = lista->inicio;
+      
       while(aux != NULL){
           printf("Nome do ninja = %s\n", aux->ninja->nome);
           aux = aux->proximo;
       }
   }
+}
+
+void print_caracteristica(Ninja* ninja){
+    struct timespec seed;																	
+    clock_gettime(CLOCK_REALTIME, &seed);												
+    srand(seed.tv_nsec); 
+    
+    int elemento = rand() % 4;
+
+
+    if(elemento == 0){
+        printf("\e[92mNinjutsu = %d\n\e[91mGenjutsu = ??\nTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->ninjutsu);
+    }
+    else if(elemento == 1){
+        printf("\e[91mNinjutsu = ??\n\e[92mGenjutsu = %d\n\e[91mTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->genjutsu);
+    }
+    else if(elemento == 2){
+        printf("\e[91mNinjutsu = ??\nGenjutsu = ??\n\e[92mTaijutsu = %d\n\e[91mDefesa =   ??\n\e[39m", ninja->taijutsu);
+    }
+    else if(elemento == 3){
+        printf("\e[91mNinjutsu = ??\nGenjutsu = ??\nTaijutsu = ??\n\e[92mDefesa =   %d\n\e[39m", ninja->defesa);
+    }
+    printf("\n");
+    
+}
+
+l_elemento* printa_escolha_personagem(l_lista* fila){
+    CLEAR;
+    int posicao = 1;
+    int seu_personagem;
+    if(fila->inicio == NULL){
+        printf("Erro ao printar personagens, programa encerrando\n");
+        return;
+    }
+
+    else{
+        l_elemento* aux = fila->inicio;
+      
+        while(aux != NULL){
+            printf("##########-.Personagem %d.-##########\n", posicao);
+            print_caracteristica(aux->ninja);
+            aux = aux->proximo;
+            posicao++;
+        }
+
+        printf("Digite o numero do seu personagem: ");
+        scanf("%d", &seu_personagem);
+
+        while(seu_personagem < 1 || seu_personagem > 16){
+            printf("Escolha uma opcao valida:");
+            scanf("%d", &seu_personagem);
+        }
+        
+        int l;
+        aux = fila->inicio;
+
+        for(l=1;l<seu_personagem;l++){
+            aux = aux->proximo;
+        }
+
+        return aux;
+    }
 }
 
 void limpa_lista(l_lista* lista){
