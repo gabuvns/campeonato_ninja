@@ -4,7 +4,7 @@
 typedef struct{
     char* nome;
     char* elemento;
-    //todos os atributos variam de 0 a 100
+    /*todos os atributos variam de 0 a 100*/
     int ninjutsu; 
     int genjutsu;
     int taijutsu;

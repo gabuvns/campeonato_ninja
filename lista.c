@@ -69,29 +69,6 @@ void printa_lista(l_lista* lista){
   }
 }
 
-void print_caracteristica(Ninja* ninja){
-    struct timespec seed;																	
-    clock_gettime(CLOCK_REALTIME, &seed);												
-    srand(seed.tv_nsec); 
-    
-    int elemento = rand() % 4;
-
-
-    if(elemento == 0){
-        printf("\e[92mNinjutsu = %d\n\e[91mGenjutsu = ??\nTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->ninjutsu);
-    }
-    else if(elemento == 1){
-        printf("\e[91mNinjutsu = ??\n\e[92mGenjutsu = %d\n\e[91mTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->genjutsu);
-    }
-    else if(elemento == 2){
-        printf("\e[91mNinjutsu = ??\nGenjutsu = ??\n\e[92mTaijutsu = %d\n\e[91mDefesa =   ??\n\e[39m", ninja->taijutsu);
-    }
-    else if(elemento == 3){
-        printf("\e[91mNinjutsu = ??\nGenjutsu = ??\nTaijutsu = ??\n\e[92mDefesa =   %d\n\e[39m", ninja->defesa);
-    }
-    printf("\n");
-    
-}
 
 l_elemento* printa_escolha_personagem(l_lista* fila){
     CLEAR;

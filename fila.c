@@ -5,7 +5,7 @@
 #include "arvore.h"
 #include "fila.h"
 
-//Insere elementos na fila
+/*Insere elementos na fila*/
 void insere_fila(l_lista* fila, t_node* node){
   if(fila->inicio == NULL){
     fila->inicio = aloca_elemento();
@@ -36,9 +36,9 @@ void insere_fila(l_lista* fila, t_node* node){
 }
 
 
-//Criamos uma fila onde cada elemento aponta para um no da arvore
-//coloca todos os elementos de um determinado nivel em fila
-void cria_fila_nivel(l_lista* fila, t_node* node, int altura_desejada, int altura_atual){
+/*Criamos uma fila onde cada elemento aponta para um no da arvore
+coloca todos os elementos de um determinado nivel em fila*/
+void cria_fila_nivel(l_lista* fila, t_node* node, int altura_desejada, int altura_atual){ 
     if(altura_atual < altura_desejada){
         altura_atual++;
         cria_fila_nivel(fila, node->left, altura_desejada, altura_atual);
@@ -51,12 +51,17 @@ void cria_fila_nivel(l_lista* fila, t_node* node, int altura_desejada, int altur
 }
 
 
-//Percursao em largura
-//Consideramos o no raiz como nivel 0 e seus dois filhos como nivel 1 e assim por diante
+/*Percursao em largura
+Consideramos o no raiz como nivel 0 e seus dois filhos como nivel 1 e assim por diante*/
 l_lista* cria_fila(arvore_raiz* raiz, int altura_desejada){
     int altura_atual = 0;
     l_lista* fila = aloca_lista();
-    cria_fila_nivel(fila, raiz->no_raiz, altura_desejada, altura_atual);
+    if(altura_desejada == 0){
+        insere_fila(fila, no_raiz);
+    }
+    else{
+        cria_fila_nivel(fila, raiz->no_raiz, altura_desejada, altura_atual);
+    }
     
     return fila;
 }

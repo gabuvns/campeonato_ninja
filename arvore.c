@@ -5,8 +5,8 @@
 #include "lista.h"
 #include "arvore.h"
 
-//Funcoes relativas a criacao da arvore
-//Cria no
+/*Funcoes relativas a criacao da arvore
+Cria no*/
 t_node* node_create(){
     t_node* ptr = malloc(sizeof(t_node));
     ptr->left = NULL;
@@ -15,14 +15,14 @@ t_node* node_create(){
     return ptr;
 }
 
-//Cria o ponteiro  raiz que apontara para o inicio
+/*Cria o ponteiro  raiz que apontara para o inicio*/
 arvore_raiz* cria_raiz(){
     arvore_raiz* raiz = (arvore_raiz*) malloc(sizeof(raiz));
     raiz->no_raiz = NULL;
     return raiz;
 }
 
-//Funcao recursiva para criar a arvore
+/*Funcao recursiva para criar a arvore*/
 t_node* cria_arvores (int altura){
     if(altura < 5){
         t_node*  node = node_create();
@@ -39,7 +39,7 @@ t_node* cria_arvores (int altura){
     }
 }
 
-//Funcao que cria a arvore e recebe de volta o ponteiro para a raiz
+/*Funcao que cria a arvore e recebe de volta o ponteiro para a raiz*/
 arvore_raiz* tree_create(){
     int altura = 0;
     arvore_raiz* raiz = cria_raiz();
@@ -48,16 +48,16 @@ arvore_raiz* tree_create(){
 }
 
 
-//Fim das funcoes relativas a criacao da arvore
+/*Fim das funcoes relativas a criacao da arvore*/
 
-//Funcoes relativas a destruicao da arvore
-//libera no
+/*Funcoes relativas a destruicao da arvore
+libera no*/
 void node_free(t_node* node){
     if(node != NULL){
         node_free(node->left);
         node_free(node->right);
 
-        //ATENCAO, LIBERAR AQUI OU NA ARVORE******
+        /*ATENCAO, LIBERAR AQUI OU NA ARVORE*******/
         if(node->ninja != NULL){
             ninja_free(node->ninja);
         }
@@ -65,7 +65,7 @@ void node_free(t_node* node){
         free(node);
     }   
 }   
-//Destruicao recursiva
+/*Destruicao recursiva*/
 void fullclear(t_node* raiz){
     if(raiz->left != NULL){
         fullclear(raiz->left);
@@ -78,18 +78,18 @@ void fullclear(t_node* raiz){
     free(raiz->right);
 }
 
-//Funcao principal
+/*Funcao principal*/
 void free_tree(arvore_raiz* raiz){
     fullclear(raiz->no_raiz);
     free(raiz->no_raiz);
     free(raiz);
 }
 
-//Fim das funcoes relativas a destruicao da arvore
+/*Fim das funcoes relativas a destruicao da arvore*/
 
-//cria uma lista com os 16 ninjas aleatoriamente
+/*cria uma lista com os 16 ninjas aleatoriamente*/
 l_lista* pega_ninja(){
-    //abre arquivo
+    /*abre arquivo*/
     FILE* fd;
     fd = fopen("ninjas.txt", "r");
     
@@ -98,7 +98,7 @@ l_lista* pega_ninja(){
         return;
     }
 
-    //vetor aleatorio
+    /*vetor aleatorio*/
     int vetor[16];
     int valor_aleatorio;
 
@@ -124,7 +124,7 @@ l_lista* pega_ninja(){
         }
     } 
 
-    //coloca o ninja na lista
+    /*coloca o ninja na lista*/
     Ninja* ninja;
     char nome[16];
     char elemento[11];

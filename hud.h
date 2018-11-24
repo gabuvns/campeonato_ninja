@@ -4,10 +4,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "lista.h"
-#include "ninja.h"
-#include "arvore.h"
-#include "fila.h"
-void mostrar_meupersonagem(l_elemento* personagem, int indisponivel);
-int menu();
 
+void mostrar_meu_personagem(Ninja* personagem);
+int menu();
+void derrota();
+void vitoria(int etapa);
+void vitoria_torneio();
+void print_caracteristica(Ninja* ninja);
+ 
 #endif
