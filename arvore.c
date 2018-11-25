@@ -5,8 +5,14 @@
 #include "lista.h"
 #include "arvore.h"
 
-/*Funcoes relativas a criacao da arvore
-Cria no*/
+
+/*Funcoes relativas a criacao da arvore*/
+
+/**
+ * @brief Cria node vazio
+ * 
+ * @return t_node* 
+ */
 t_node* node_create(){
     t_node* ptr = malloc(sizeof(t_node));
     ptr->left = NULL;
@@ -15,14 +21,23 @@ t_node* node_create(){
     return ptr;
 }
 
-/*Cria o ponteiro  raiz que apontara para o inicio*/
+/**
+ * @brief Cria o ponteiro  raiz que apontara para o inicio
+ * 
+ * @return arvore_raiz* 
+ */
 arvore_raiz* cria_raiz(){
     arvore_raiz* raiz = (arvore_raiz*) malloc(sizeof(raiz));
     raiz->no_raiz = NULL;
     return raiz;
 }
 
-/*Funcao recursiva para criar a arvore*/
+/**
+ * @brief Funcao recursiva para criar a arvore
+ * 
+ * @param altura 
+ * @return t_node* 
+ */
 t_node* cria_arvores (int altura){
     if(altura < 5){
         t_node*  node = node_create();
@@ -39,7 +54,12 @@ t_node* cria_arvores (int altura){
     }
 }
 
-/*Funcao que cria a arvore e recebe de volta o ponteiro para a raiz*/
+/**
+ * @brief 
+ *Funcao que cria a arvore e recebe de volta o ponteiro para a raiz
+  
+ * @return arvore_raiz* 
+ */
 arvore_raiz* tree_create(){
     int altura = 0;
     arvore_raiz* raiz = cria_raiz();
@@ -50,8 +70,12 @@ arvore_raiz* tree_create(){
 
 /*Fim das funcoes relativas a criacao da arvore*/
 
-/*Funcoes relativas a destruicao da arvore
-libera no*/
+/*Funcoes relativas a destruicao da arvore*/
+/**
+ * @brief Desaloca a memoria alocada de ndoe
+ * 
+ * @param node 
+ */
 void node_free(t_node* node){
     if(node != NULL){
         node_free(node->left);
@@ -65,7 +89,13 @@ void node_free(t_node* node){
         free(node);
     }   
 }   
-/*Destruicao recursiva*/
+
+
+/**
+ * @brief Destroi a arvore recursivamente
+ * 
+ * @param raiz 
+ */
 void fullclear(t_node* raiz){
     if(raiz->left != NULL){
         fullclear(raiz->left);
@@ -78,7 +108,11 @@ void fullclear(t_node* raiz){
     free(raiz->right);
 }
 
-/*Funcao principal*/
+/**
+ * @brief Chama a funcao fullclear para destruir a arvore
+ * 
+ * @param raiz 
+ */
 void free_tree(arvore_raiz* raiz){
     fullclear(raiz->no_raiz);
     free(raiz->no_raiz);
@@ -87,7 +121,11 @@ void free_tree(arvore_raiz* raiz){
 
 /*Fim das funcoes relativas a destruicao da arvore*/
 
-/*cria uma lista com os 16 ninjas aleatoriamente*/
+/**
+ * @brief Cria uma lista com 16 ninjas dos 32 do arquivo fornecido
+ * 
+ * @return l_lista* 
+ */
 l_lista* pega_ninja(){
     /*abre arquivo*/
     FILE* fd;

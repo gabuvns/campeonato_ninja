@@ -9,9 +9,16 @@
 #include "jogo.h"
 
 int main(){
-    if(menu() == 1){
-        jogo();
+    int entrada;
+    entrada = menu();
+    
+    while(entrada == 1){
+        entrada = jogo();
     }
 
+    system("clear");
+    printf("\n\n########################\n");
+    printf("\n\n###Obrigado por jogar###\n");
+    printf("\n\n########################\n");
     return 0;
 }

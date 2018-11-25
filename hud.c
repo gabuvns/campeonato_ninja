@@ -7,6 +7,13 @@
 
 #define CLEAR system("clear")
 
+/*As funcoes aqui sao meramente composta por prints*/
+
+/**
+ * @brief Display tela de vitoria
+ * 
+ * @param etapa 
+ */
 void vitoria(int etapa){
     printf(" \e[43m\e[34m");
     printf("\n\n*****VITORIA*****\n");        
@@ -22,6 +29,11 @@ void vitoria(int etapa){
     system("clear");
     printf("ETAPA %d\n\n", etapa);
 }
+
+/**
+ * @brief Display tela inicial
+ * 
+ */
 void boas_vindas(){
     CLEAR;
     printf("/ \\  /|/ \\/ \\  /|   / |/  _ \\  /    // \\/  __// \\ /|/__ __\\ \n");
@@ -33,6 +45,10 @@ void boas_vindas(){
     getchar();
 }
 
+/**
+ * @brief display menu
+ * 
+ */
 void show_menu(){
     CLEAR;    
     printf("(1). Iniciar exame\n");
@@ -40,6 +56,11 @@ void show_menu(){
     printf("Digite sua opcao: ");
 }
 
+/**
+ * @brief Menu principal
+ * 
+ * @return int 
+ */
 int menu(){
     CLEAR;
     char entrada;
@@ -62,8 +83,11 @@ int menu(){
     }   
 }
 
-/*Pinta em diferentes cores do melhor para o pior atributo, alem de mostra-los
-vetor[4], de 0 a 4, em ordem crescente*/
+/**
+ * @brief Printa os status do meu_personagem
+ * 
+ * @param personagem 
+ */
 void mostrar_meu_personagem(Ninja* personagem){
 
     printf("\e[39mSeu personagem:\e[33m %s\e[39m\n\n\n", personagem->nome);
@@ -103,6 +127,11 @@ void derrota(){
     printf("\n\n\nPERDEUPLAYBOY\n\n");
 }
 
+/**
+ * @brief Printa somente as caracteristicas do ninja
+ * 
+ * @param ninja 
+ */
 void print_caracteristica(Ninja* ninja){
     struct timespec seed;																	
     clock_gettime(CLOCK_REALTIME, &seed);												
@@ -111,7 +140,7 @@ void print_caracteristica(Ninja* ninja){
     int elemento = rand() % 4;
 
     if(elemento == 0){
-        printf("\e[92m  Ninjutsu = %d\n\e[91mGenjutsu = ??\nTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->ninjutsu);
+        printf("\e[92mNinjutsu = %d\n\e[91mGenjutsu = ??\nTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->ninjutsu);
     }
     else if(elemento == 1){
         printf("\e[91mNinjutsu = ??\n\e[92mGenjutsu = %d\n\e[91mTaijutsu = ??\nDefesa =   ??\n\e[39m", ninja->genjutsu);

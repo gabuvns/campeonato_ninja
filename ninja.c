@@ -6,8 +6,17 @@
 #include "lista.h"
 #include "hud.h"
 
-
-
+/**
+ * @brief Aloca na memoria as informacoes de um ninja
+ * 
+ * @param _nome 
+ * @param _elemento 
+ * @param _ninjutsu 
+ * @param _genjutsu 
+ * @param _taijutsu 
+ * @param _defesa 
+ * @return Ninja* 
+ */
 Ninja* ninja_create(char* _nome, char* _elemento, int _ninjutsu, int _genjutsu, int _taijutsu, int _defesa){
 
     Ninja* ptr = malloc(sizeof(Ninja));
@@ -36,6 +45,11 @@ Ninja* ninja_create_vazio(){
     return ptr;
 }
 
+/**
+ * @brief Libera o espco alocado de um ninja
+ * 
+ * @param ninja 
+ */
 void ninja_free(Ninja* ninja){
         free(ninja->nome);
         free(ninja->elemento);

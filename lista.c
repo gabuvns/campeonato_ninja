@@ -5,6 +5,12 @@
 #include "ninja.h"
 
 #define CLEAR system("clear")
+
+/**
+ * @brief Aloca espaco do tamanho de l_elemento
+ * 
+ * @return l_elemento* 
+ */
 l_elemento* aloca_elemento(){
   l_elemento* ptr = malloc(sizeof(l_elemento));
   ptr->anterior = NULL;
@@ -12,6 +18,11 @@ l_elemento* aloca_elemento(){
   return ptr;
 }
 
+/**
+ * @brief Aloca Espaco para uma lista
+ * 
+ * @return l_lista* 
+ */
 l_lista* aloca_lista(){
   l_lista* ptr = malloc(sizeof(l_lista));
   ptr->inicio = NULL;
@@ -20,8 +31,13 @@ l_lista* aloca_lista(){
   return ptr;
 }
 
+/**
+ * @brief Insere na lista um ninja, utilizado para preencher a ninja do arquivo .txt
+ * 
+ * @param lista 
+ * @param ninja 
+ */
 void insere_lista(l_lista* lista, Ninja* ninja){
-
   if(lista->inicio == NULL){
     lista->inicio = aloca_elemento();
     lista->inicio->ninja = ninja;
@@ -52,6 +68,11 @@ void insere_lista(l_lista* lista, Ninja* ninja){
     lista->quantidade++;
 }
 
+/**
+ * @brief Printa a lista
+ * 
+ * @param lista 
+ */
 void printa_lista(l_lista* lista){
   if(lista->inicio == NULL){
       printf("Erro ao printar a lista, lista vazia!\n");
@@ -69,7 +90,12 @@ void printa_lista(l_lista* lista){
   }
 }
 
-
+/**
+ * @brief Funcao utilizada para printare selecionar o personagem
+ * 
+ * @param fila 
+ * @return l_elemento* 
+ */
 l_elemento* printa_escolha_personagem(l_lista* fila){
     CLEAR;
     int posicao = 1;
@@ -108,6 +134,11 @@ l_elemento* printa_escolha_personagem(l_lista* fila){
     }
 }
 
+/**
+ * @brief Libera por completo o espaco de uma lista
+ * 
+ * @param lista 
+ */
 void limpa_lista(l_lista* lista){
     if(lista->quantidade == 0){
         printf("A lista ja esta vazia!\n");
@@ -133,5 +164,5 @@ void limpa_lista(l_lista* lista){
     }
 
     free(lista);
-    printf("Lista esvaziada!\n");
+    
 }

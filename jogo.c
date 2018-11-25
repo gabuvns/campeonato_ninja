@@ -9,6 +9,7 @@
 #include "hud.h"
 
 int hab_indisp;
+
 int ehmeupersonagem(l_elemento* ninja, l_elemento* meu_personagem){
     
     if(!strcmp(ninja->ninja->nome, meu_personagem->ninja->nome)){
@@ -432,7 +433,7 @@ Ninja* batalha_humana(l_lista* fila, l_elemento* meu_personagem, l_elemento* ini
         printf("Opcao invalida, selecione um atributo disponivel: ");
         scanf("%d", &atributo_escolhido);
     }
-    
+
     printf("\n");
 
     hab_indisp = atributo_escolhido;
@@ -602,6 +603,7 @@ void proxima_etapa(){
 
 void batalhas_ninja(l_elemento* meu_personagem, l_lista* fila1, l_lista* fila2, l_lista* fila3, l_lista* fila4, l_lista* fila5){
     int ganhei = 0;
+    hab_indisp = 0;
     ganhei = batalha_primeira_etapa(fila1, fila2, meu_personagem);
     
     if(ganhei){
@@ -622,21 +624,25 @@ void batalhas_ninja(l_elemento* meu_personagem, l_lista* fila1, l_lista* fila2, 
                     printf("#########PARABENS##########\n");
                     printf("Ganhou o campeonato!!!\n\n");
                 }
+                else{
+                    printf("\nBem...você tentou\n");
+                }
             }
             else{
-                printf("Voce perdeu, mas nao eh de todo mal\n");
+                printf("\nVoce perdeu, mas nao eh de todo mal\n");
             }
         }
         else{
-            printf("Voce foi derrotado na segunda etapa, voce eh ruim mas nem tanto\n");
+            printf("\nVoce foi derrotado na segunda etapa, voce eh ruim mas nem tanto\n");
         }
     }
     else{
-        printf("Voce foi derrotado na primeira rodada, patetico!\n");
+        printf("\nVoce foi derrotado na primeira rodada, patetico!\n");
     }
 }
 
-void jogo(){
+int jogo(){
+    int entrada; 
     arvore_raiz* raiz = tree_create();
     l_lista* fila1 = cria_fila(raiz, 4);
     l_lista* fila2 = cria_fila(raiz, 3);
@@ -658,4 +664,9 @@ void jogo(){
     free_tree(raiz);
     limpa_lista(lista);
 
+    printf("\n\n(1).Iniciar outra partida\n");
+    printf("(2).Sair do jogo\n");
+    printf("Sua opcao: ");
+    scanf("%d", &entrada);
+    return entrada;
 }
